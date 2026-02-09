@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # Start MLX OpenAI Server for Embeddings Model
-# Model: mlx-community/qwen3-embedding-0.6b-8bit
+# Usage: ./start_embeddings.sh [model]
+# Example: ./start_embeddings.sh mlx-community/qwen3-embedding-0.6b-8bit
 
+MODEL="${1:-mlx-community/Qwen3-Embedding-4B-4bit-DWQ}"
 HOST="127.0.0.1"
 PORT="8000"
 LOG_DIR="logs"
@@ -24,11 +26,12 @@ if [ -f "$PID_FILE" ]; then
 fi
 
 echo "Starting MLX OpenAI Server for embeddings..."
+echo "Model: $MODEL"
 echo "Logs will be written to: $LOG_FILE"
 
 nohup uv run mlx-openai-server launch \
   --model-type embeddings \
-  --model-path mlx-community/qwen3-embedding-0.6b-8bit \
+  --model-path "$MODEL" \
   --host "$HOST" \
   --port "$PORT" \
   --max-concurrency 4 \
