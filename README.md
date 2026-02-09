@@ -73,9 +73,9 @@ Add to your LiteLLM config:
 
 ```yaml
 model_list:
-  - model_name: local-embeddings
+  - model_name: qwen/qwen3-embedding-4b
     litellm_params:
-      model: openai/text-embedding-ada-002
+      model: mlx-community/Qwen3-Embedding-4B-4bit-DWQ
       api_base: http://127.0.0.1:8000/v1
       api_key: dummy  # required but not used
 ```
